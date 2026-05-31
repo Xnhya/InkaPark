@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Registro | InkaPark</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Andada+Pro:wght@400;600;700&family=Rye&display=swap" rel="stylesheet">
+  <link href="/css/style.css" th:href="@{/css/style.css}" rel="stylesheet">
+</head>
+<body>
+
+<section class="register-section min-vh-100 d-flex align-items-center">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-10">
+        <div class="card register-card shadow-lg border-0">
+          <div class="row g-0">
+            <!-- Lado visual -->
+            <div class="col-md-6 d-none d-md-block left-visual">
+              <div class="visual-overlay d-flex flex-column justify-content-center align-items-center text-center p-4">
+                <h2 class="register-visual-title mb-3">
+                  Únete a <span class="text-gold">InkaPark</span>
+                </h2>
+                <p class="small mb-4">Regístrate y empieza tu viaje por las maravillas incaicas.</p>
+                <div class="visual-img-wrapper">
+                  <img src="/images/Portada.png" th:src="@{/images/Portada.png}" alt="InkaPark Registro" class="img-fluid rounded shadow-sm">
+                </div>
+              </div>
+            </div>
+
+            <!-- Lado formulario -->
+            <div class="col-md-6">
+              <div class="card-body p-5">
+                <div class="mb-4 text-center">
+                  <h3 class="register-title">Crear cuenta</h3>
+                  <p class="text-muted small mb-0">Completa los campos para registrarte</p>
+                </div>
+
+                <!-- Alertas -->
+                <div th:if="${error}" class="alert alert-danger alert-dismissible fade show" role="alert">
+                  <span th:text="${error}">Ocurrió un error</span>
+                  <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+                <div th:if="${ok}" class="alert alert-success alert-dismissible fade show" role="alert">
+                  <span th:text="${ok}">Registro iniciado. Revisa tu correo @gmail.com para verificar tu cuenta.</span>
+                  <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+
+                <!-- Form registro -->
+                <form class="needs-validation" novalidate th:action="@{/auth/register}" method="post">
+                  <!-- CSRF (si usas Spring Security) -->
+                  <input type="hidden" th:name="${_csrf?.parameterName}" th:value="${_csrf?.token}"/>
+
+                  <div class="mb-3">
+                    <label for="name" class="form-label">Nombre completo</label>
+                    <input type="text" id="name" name="name" class="form-control" placeholder="Tu nombre" required>
+                    <div class="invalid-feedback">El nombre es obligatorio.</div>
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="email" class="form-label">Correo electrónico (solo @gmail.com)</label>
+                    <input type="email" id="email" name="email" class="form-control"
+                           placeholder="tu@gmail.com" required autocomplete="email"
+                           pattern="[a-z0-9._%+-]+@gmail\.com"
+                           title="Usa un correo @gmail.com válido (ej: tu@gmail.com)">
+                    <div class="invalid-feedback">Introduce un correo @gmail.com válido.</div>
+                  </div>
+
+                  <div class="mb-3 position-relative">
+                    <label for="password" class="form-label">Contraseña</label>
+                    <div class="input-group">
+                      <input type="password" id="password" name="password" class="form-control"
+                             placeholder="Crea una contraseña" required minlength="6" autocomplete="new-password">
+                      <button class="btn btn-outline-secondary password-toggle" type="button" data-target="password" aria-label="Mostrar contraseña">
+                        <i class="fa-solid fa-eye"></i>
+                      </button>
+                    </div>
+                    <div class="invalid-feedback">La contraseña es obligatoria (mínimo 6 caracteres).</div>
+                  </div>
+
+                  <div class="d-grid mb-3">
+                    <button class="btn btn-inca btn-lg" type="submit">
+                      <i class="fa-solid fa-user-plus me-2"></i> Registrarse
+                    </button>
+                  </div>
+
+                  <p class="text-center small mt-4 mb-0">
+                    ¿Ya tienes cuenta? <a th:href="@{/auth/login}">Inicia sesión</a>
+                  </p>
+                </form>
+
+              </div>
+            </div>
+          </div><!-- row -->
+        </div><!-- card -->
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/js/main.js?v=1" th:src="@{/js/main.js(v=1)}"></script>
+
+<script>
+// Validación Bootstrap + toggle de contraseña + normalizar email a minúsculas
+(() => {
+  const form = document.querySelector('form.needs-validation');
+  const emailInput = document.getElementById('email');
+  if (emailInput) {
+    emailInput.addEventListener('blur', () => { emailInput.value = emailInput.value.trim().toLowerCase(); });
+  }
+  if (form) {
+    form.addEventListener('submit', (e) => {
+      if (!form.checkValidity()) { e.preventDefault(); e.stopPropagation(); }
+      form.classList.add('was-validated');
+    });
+  }
+  document.querySelectorAll('.password-toggle').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const target = document.getElementById(btn.dataset.target);
+      if (!target) return;
+      target.type = target.type === 'password' ? 'text' : 'password';
+      btn.querySelector('i').classList.toggle('fa-eye');
+      btn.querySelector('i').classList.toggle('fa-eye-slash');
+    });
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>IncaPark — Vive la magia del mundo inca</title>
+  <meta name="description" content="Atracciones temáticas, cultura viva y diversión incaica. Planea tu visita a IncaPark y vive una experiencia única en nuestro parque temático.">
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Font Awesome -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+
+  <!-- Estilos -->
+  <link href="/css/style.css" th:href="@{/css/style.css}" rel="stylesheet">
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="navbar navbar-expand-lg fixed-top nav-transparent">
+  <div class="container">
+    <a class="navbar-brand d-flex align-items-center gap-2" th:href="@{/}">
+      <i class="fa-solid fa-mountain-sun"></i>
+      <span>IncaPark</span>
+    </a>
+
+    <button class="navbar-toggler text-bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navMain"
+            aria-controls="navMain" aria-expanded="false" aria-label="Menú">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navMain">
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center">
+        <li class="nav-item"><a class="nav-link" th:href="@{/}"><i class="fa-solid fa-house me-1"></i>Inicio</a></li>
+        <li class="nav-item"><a class="nav-link" th:href="@{/atracciones}"><i class="fa-solid fa-person-hiking me-1"></i>Atracciones</a></li>
+        <li class="nav-item"><a class="nav-link" th:href="@{/tickets}"><i class="fa-solid fa-ticket me-1"></i>Tickets</a></li>
+        <li class="nav-item"><a class="nav-link" th:href="@{/nosotros}"><i class="fa-solid fa-landmark me-1"></i>Nosotros</a></li>
+        <li class="nav-item"><a class="nav-link" th:href="@{/contacto}"><i class="fa-regular fa-envelope me-1"></i>Contacto</a></li>
+
+        <!-- Botón login si NO hay sesión -->
+        <li class="nav-item ms-lg-3"
+            th:if="${session.usuario == null and session.USER_NOMBRE == null}">
+          <a class="btn btn-inca btn-sm" th:href="@{/auth/login}">
+            <i class="fa-regular fa-user me-1"></i> Iniciar sesión
+          </a>
+        </li>
+
+        <!-- Dropdown con nombre si SÍ hay sesión -->
+        <li class="nav-item dropdown ms-lg-3"
+            th:if="${session.usuario != null or session.USER_NOMBRE != null}">
+          <a class="nav-link dropdown-toggle d-flex align-items-center gap-2 btn btn-outline-light px-3 py-2 rounded-3"
+             href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fa-solid fa-user"></i>
+            <span th:text="${session.usuario != null ? session.usuario.nombre : session.USER_NOMBRE}">Usuario</span>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end">
+            <li>
+              <a class="dropdown-item text-danger" th:href="@{/auth/logout}">
+                <i class="fa-solid fa-right-from-bracket me-2"></i>Cerrar sesión
+              </a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="hero-media">
+    <img src="/images/Portada.png" th:src="@{/images/Portada.png}" alt="Paisaje andino IncaPark">
+  </div>
+  <div class="hero-overlay"></div>
+
+  <div class="container hero-content">
+    <div class="row justify-content-start">
+      <div class="col-12 col-md-10 col-lg-12">
+        <div class="ribbon-above-title"><span>PARQUE TEMÁTICO</span></div>
+        <h1 class="display-title">El Camino Sagrado hacia<br> la Diversión Incaica</h1>
+        <p class="lead hero-lead">
+          Escenarios impresionantes, historia viva y aventuras familiares: explora el legado del Imperio Inca en el parque temático más auténtico del Perú.
+        </p>
+        <div class="btn-group-hero">
+          <a th:href="@{/tickets}" class="btn btn-cta">
+            DETALLES DEL VIAJE <i class="fa-solid fa-arrow-right-long ms-2"></i>
+          </a>
+          <a th:href="@{/atracciones}" class="btn btn-outline-light">
+            <i class="fa-solid fa-person-hiking me-2"></i>Explorar atracciones
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Intro -->
+<section id="intro" class="section-plain reveal">
+  <div class="container">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-6 anim">
+        <img class="media-cover shadow-soft" src="/images/Atraccion1.jpg" th:src="@{/images/Atraccion1.jpg}" alt="Mirador IncaPark">
+      </div>
+      <div class="col-lg-6">
+        <span class="kicker">Cultura viva</span>
+        <h2 class="section-title">Atracciones escénicas & mundos ancestrales</h2>
+        <p class="lead-ink">Conecta con la historia y la tradición en recorridos interactivos. Participa en talleres de tejido, gastronomía andina y espectáculos culturales en vivo.</p>
+        <a th:href="@{/atracciones}" class="btn btn-outline-dark">
+          <i class="fa-solid fa-person-hiking me-2"></i>Ver atracciones
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Bloque invertido -->
+<section class="section-alt reveal">
+  <div class="container">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-6 order-lg-2 anim">
+        <img class="media-cover shadow-soft" src="/images/Comfort1.jpg" th:src="@{/images/Comfort1.jpg}" alt="Cultura y hospitalidad">
+      </div>
+      <div class="col-lg-6 order-lg-1">
+        <span class="kicker">Hospitalidad</span>
+        <h2 class="section-title">Confort con esencia inca</h2>
+        <p class="lead-ink">Inspirados en la arquitectura ancestral: descanso, diseño temático y servicios con el sello de hospitalidad peruana.</p>
+        <a th:href="@{/nosotros}" class="btn btn-outline-dark">
+          <i class="fa-solid fa-landmark me-2"></i>Conócenos
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Banda CTA -->
+<section class="band-cta reveal">
+  <div class="container d-flex flex-column flex-lg-row align-items-center justify-content-between gap-3">
+    <h3 class="mb-0">¿Listo para vivir la experiencia IncaPark?</h3>
+    <a th:href="@{/tickets}" class="btn btn-inca btn-lg">
+      <i class="fa-solid fa-ticket me-2"></i>Reservar ahora
+    </a>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <h5 class="mb-3">IncaPark</h5>
+        <p class="mb-3">Atracciones temáticas, cultura viva y hospitalidad andina: descubre el mundo inca como nunca antes en nuestro parque temático.</p>
+        <div class="social d-flex gap-3 mt-2">
+          <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+        </div>
+      </div>
+      <nav aria-label="Explora">
+        <h5 class="mb-3">Explora</h5>
+        <ul class="list-unstyled d-grid gap-2 mb-0">
+          <li><a th:href="@{/atracciones}">Atracciones</a></li>
+          <li><a th:href="@{/galeria}">Galería</a></li>
+          <li><a th:href="@{/tickets}">Tickets</a></li>
+          <li><a th:href="@{/nosotros}">Nosotros</a></li>
+        </ul>
+      </nav>
+      <nav aria-label="Información">
+        <h5 class="mb-3">Información</h5>
+        <ul class="list-unstyled d-grid gap-2 mb-0">
+          <li><a th:href="@{/contacto}">Contacto</a></li>
+          <li><a href="#">Preguntas frecuentes</a></li>
+          <li><a href="#">Términos &amp; condiciones</a></li>
+          <li><a href="#">Política de privacidad</a></li>
+        </ul>
+      </nav>
+      <div>
+        <h5 class="mb-3">Acceso Admin</h5>
+        <a class="btn btn-inca btn-sm d-inline-flex align-items-center gap-2" th:href="@{/admin/login}">
+          <i class="fa-solid fa-user-shield"></i> ¿Eres admin?
+        </a>
+      </div>
+    </div>
+
+    <div class="footer-bottom d-flex flex-column flex-md-row justify-content-between align-items-center mt-4">
+      <div>© 2025 IncaPark · Todos los derechos reservados</div>
+      <div>Hecho con <i class="fa-solid fa-heart ms-1 me-1"></i> en Perú</div>
+    </div>
+  </div>
+</footer>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/js/main.js?v=1" th:src="@{/js/main.js(v=1)}"></script>
+</body>
+</html>
