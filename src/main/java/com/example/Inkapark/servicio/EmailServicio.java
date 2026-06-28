@@ -1,8 +1,5 @@
 package com.example.Inkapark.servicio;
 
-import com.example.Inkapark.modelo.Boleta;
-import com.example.Inkapark.modelo.Pago;
-import com.example.Inkapark.modelo.Usuario;
 import jakarta.mail.Message;
 import jakarta.mail.internet.InternetAddress;
 import org.springframework.beans.factory.annotation.Value;
@@ -11,6 +8,10 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.mail.javamail.MimeMessagePreparator;
 import org.springframework.stereotype.Service;
+
+import com.example.Inkapark.modelo.Boleta;
+import com.example.Inkapark.modelo.Pago;
+import com.example.Inkapark.modelo.Usuario;
 
 @Service
 public class EmailServicio {

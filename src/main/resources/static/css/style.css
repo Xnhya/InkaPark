@@ -1,0 +1,1261 @@
+/* ================== Tipografías ================== */
+@import url('https://fonts.googleapis.com/css2?family=Andada+Pro:ital,wght@0,400..840;1,400..840&family=Rye&display=swap');
+
+/* ================== Paleta inka ================== */
+:root {
+  --inca-brown: #4b2f1a;
+  --inca-brown-900: #352112;
+  --inca-gold: #c9a227;
+  --inca-gold-700: #b8921f;
+  --inca-green: #2f5d50;
+  --inca-sand: #f2e8d5;
+  --ink: #1f1f1f;
+  --white: #fff;
+}
+
+/* ================== Base ================== */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Andada Pro", serif;
+  color: var(--ink);
+  background: var(--white);
+}
+
+h1,
+h2,
+h3,
+.navbar-brand,
+.display-title {
+  font-family: "Rye", serif;
+  letter-spacing: .4px;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* ================== Navbar ================== */
+.navbar {
+  transition: background .25s ease, box-shadow .25s ease, padding .25s ease;
+  padding-block: .35rem;
+}
+
+.navbar .navbar-brand,
+.navbar .nav-link {
+  color: var(--white) !important;
+}
+
+.navbar .nav-link:hover,
+.navbar .nav-link.active,
+.navbar .nav-current {
+  color: var(--inca-gold) !important;
+}
+
+.navbar.nav-transparent {
+  background: transparent !important;
+}
+
+.navbar.nav-solid {
+  background: var(--inca-brown) !important;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, .25);
+}
+
+/* ================== Hero ================== */
+.hero {
+  position: relative;
+  min-height: 92vh;
+  isolation: isolate;
+  /* overlay correcto */
+  display: grid;
+  place-items: center;
+}
+
+.hero-media {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  will-change: transform;
+}
+
+.hero-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.12);
+  animation: kenburns 24s ease-in-out infinite alternate;
+  filter: saturate(1.05) contrast(1.05);
+  transform-origin: 60% 40%;
+}
+
+@keyframes kenburns {
+  0% {
+    transform: scale(1.12) translateY(0px);
+  }
+
+  100% {
+    transform: scale(1.22) translateY(-20px);
+  }
+}
+
+/* Parallax suave */
+@media (prefers-reduced-motion: no-preference) {
+  .hero-media {
+    background-attachment: fixed;
+  }
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, .40), rgba(0, 0, 0, .45));
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  color: var(--white);
+  max-width: 980px;
+  text-align: left;
+  margin-top: 4rem;
+}
+
+.display-title {
+  font-size: clamp(2rem, 1.2rem + 3.2vw, 4rem);
+  line-height: 1.05;
+  text-shadow: 0 6px 30px rgba(0, 0, 0, .45);
+}
+
+.hero-lead {
+  max-width: 720px;
+  opacity: .98;
+}
+
+/* Ribbon estilo "SIGNATURE ADVENTURE" */
+.ribbon {
+  position: absolute;
+  left: 1.25rem;
+  top: 5rem;
+  z-index: 3;
+  background: transparent;
+}
+
+.ribbon span {
+  background: #e64a2e;
+  /* tono rojo anaranjado del ref */
+  color: #fff;
+  font-weight: 800;
+  letter-spacing: .06em;
+  padding: .45rem .85rem;
+  border-radius: .25rem;
+  font-size: .85rem;
+  text-transform: uppercase;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, .25);
+}
+
+/* Botones CTA */
+.btn-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: .25rem;
+  background: transparent;
+  color: #fff;
+  border: 2px solid #fff;
+  padding: .8rem 1.35rem;
+  border-radius: .25rem;
+  font-weight: 800;
+  letter-spacing: .06em;
+}
+
+.btn-cta:hover {
+  background: rgba(255, 255, 255, .12);
+  color: #fff;
+}
+
+.btn-inca {
+  background: var(--inca-gold);
+  border: none;
+  color: #1a1209;
+  font-weight: 800;
+}
+
+.btn-inca:hover {
+  background: var(--inca-gold-700);
+  color: #1a1209;
+}
+
+/* Flecha scroll */
+.scroll-down {
+  position: absolute;
+  bottom: 2.2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #fff;
+  font-size: 1.4rem;
+  opacity: .85;
+  z-index: 2;
+  width: 42px;
+  height: 42px;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  transition: transform .2s ease, opacity .2s ease;
+}
+
+.scroll-down:hover {
+  transform: translateX(-50%) translateY(-4px);
+  opacity: 1;
+}
+
+/* ================== Secciones editoriales ================== */
+.section-plain {
+  background: var(--inca-sand);
+  padding: 4.5rem 0;
+}
+
+.section-alt {
+  background: var(--white);
+  padding: 4.5rem 0;
+}
+
+.kicker {
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  color: var(--inca-gold);
+  font-weight: 800;
+}
+
+.section-title {
+  font-size: clamp(1.6rem, 1rem + 2.4vw, 2.4rem);
+  margin: .25rem 0 1rem 0;
+}
+
+.lead-ink {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  opacity: .95;
+}
+
+.media-cover {
+  width: 100%;
+  height: 420px;
+  object-fit: cover;
+  border-radius: .75rem;
+}
+
+/* ================== Banda CTA ================== */
+.band-cta {
+  background: var(--inca-green);
+  color: #fff;
+  padding: 2.6rem 0;
+}
+
+.band-cta .btn-inca {
+  background: var(--inca-gold);
+}
+
+/* ================== Footer ================== */
+.footer {
+  background: var(--inca-brown);
+  color: #fff;
+  padding: 1rem 0;
+  font-size: .95rem;
+}
+
+.footer a {
+  color: var(--inca-gold);
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}
+
+/* ================== Sombras útiles ================== */
+.shadow-soft {
+  box-shadow: 0 16px 40px rgba(0, 0, 0, .12);
+}
+
+/* ================== Scroll Reveal ================== */
+.reveal {
+  opacity: 0;
+  transform: translateY(26px);
+  transition: all .7s ease;
+}
+
+.reveal.revealed {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ================== Focus visible ================== */
+:focus-visible {
+  outline: 3px solid rgba(201, 162, 39, .45);
+  outline-offset: 4px;
+}
+
+/* ====== Ajustes de layout global ====== */
+.container {
+  max-width: 1180px;
+}
+
+/* Navbar: mejor espaciado y alineación de íconos */
+.navbar {
+  padding-block: .6rem;
+}
+
+.navbar .nav-link i {
+  opacity: .9;
+  margin-right: .35rem;
+}
+
+/* ====== HERO: títulos a la izquierda, mejor lectura y centrado visual ====== */
+.hero {
+  min-height: 92vh;
+}
+
+.hero-overlay {
+  background: linear-gradient(180deg, rgba(0, 0, 0, .48), rgba(0, 0, 0, .38));
+}
+
+.ribbon {
+  left: clamp(.75rem, 3vw, 2rem);
+  top: clamp(4rem, 7vh, 6rem);
+}
+
+.hero-content {
+  /* alinea a la izquierda y saca el texto de la zona de la modelo */
+  text-align: left;
+  max-width: 980px;
+  margin-top: 8vh;
+  padding-left: clamp(.5rem, 4vw, 2rem);
+}
+
+.display-title {
+  font-size: clamp(2.6rem, 1.8rem + 3.2vw, 4.4rem);
+  margin-bottom: .75rem;
+}
+
+.hero-lead {
+  font-size: clamp(1.05rem, .9rem + .4vw, 1.25rem);
+}
+
+.btn-cta {
+  padding: .9rem 1.4rem;
+  border-width: 2px;
+}
+
+.scroll-down {
+  bottom: 1.4rem;
+}
+
+/* Evita que la cara del niño tape el texto en 1200px+ */
+@media (min-width: 1200px) {
+  .hero-content {
+    padding-left: 2.5rem;
+    max-width: 860px;
+  }
+}
+
+/* Mejora de bloques editoriales: respiración y alineación */
+.section-plain,
+.section-alt {
+  padding: 5rem 0;
+}
+
+.media-cover {
+  height: 440px;
+}
+
+/* ====== FOOTER PRO ====== */
+.footer {
+  background: linear-gradient(180deg, var(--inca-brown), var(--inca-brown-900));
+  color: #fff;
+  padding: 3.2rem 0 0;
+  font-size: .98rem;
+}
+
+.footer a {
+  color: var(--inca-sand);
+  opacity: .9;
+}
+
+.footer a:hover {
+  color: var(--inca-gold);
+  opacity: 1;
+  text-decoration: none;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1fr 1.2fr;
+  gap: 2rem;
+}
+
+.footer h5 {
+  font-family: "Rye", serif;
+  font-size: 1.05rem;
+  letter-spacing: .02em;
+  margin-bottom: .9rem;
+  color: var(--inca-gold);
+}
+
+.footer .list-unstyled li+li {
+  margin-top: .4rem;
+}
+
+.footer .social a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .08);
+  margin-right: .4rem;
+}
+
+.footer .social a:hover {
+  background: rgba(255, 255, 255, .16);
+}
+
+.footer .newsletter .form-control {
+  background: rgba(255, 255, 255, .09);
+  border: 1px solid rgba(255, 255, 255, .15);
+  color: #fff;
+}
+
+.footer .newsletter .form-control::placeholder {
+  color: rgba(255, 255, 255, .7);
+}
+
+.footer .newsletter .btn {
+  background: var(--inca-gold);
+  border: none;
+  font-weight: 700;
+}
+
+.footer .newsletter .btn:hover {
+  background: var(--inca-gold-700);
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, .12);
+  margin-top: 2.2rem;
+  padding: .9rem 0;
+  font-size: .92rem;
+  color: rgba(255, 255, 255, .85);
+}
+
+/* === Ribbon dentro del texto === */
+.ribbon-inline {
+  display: inline-block;
+}
+
+.ribbon-inline .ribbon-text {
+  background: #e64a2e;
+  /* rojo/naranja */
+  color: #fff;
+  font-weight: 800;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  padding: .45rem .9rem;
+  border-radius: .25rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, .25);
+}
+
+/* === Alineación de los botones === */
+.btn-group-hero {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+  /* fuerza que queden en la misma línea base */
+  margin-top: 1.5rem;
+}
+
+.btn-group-hero .btn {
+  padding-top: .85rem;
+  padding-bottom: .85rem;
+  display: inline-flex;
+  align-items: center;
+  /* centra iconos y texto verticalmente */
+}
+
+
+@media (max-width: 991.98px) {
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* === HERO: tipografía y ancho del bloque === */
+.hero .display-title {
+  line-height: 1.06;
+  margin-bottom: .6rem;
+  /* tamaño fluido más compacto */
+  font-size: clamp(2.2rem, 1rem + 2.6vw, 3.4rem);
+}
+
+.hero .hero-lead {
+  max-width: 720px;
+}
+
+/* Alinea el texto y el ribbon a la misma guía izquierda */
+.hero .hero-content {
+  padding-left: clamp(.5rem, 3.5vw, 2rem);
+}
+
+/* === Botones del hero: misma altura y centrados === */
+.btn-group-hero {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+}
+
+.btn-group-hero .btn {
+  height: 54px;
+  /* misma altura */
+  display: inline-flex;
+  align-items: center;
+  padding: .8rem 1.35rem;
+}
+
+.btn-cta {
+  border-width: 2px;
+}
+
+/* ya la tienes, refuerzo */
+.btn-outline-light {
+  border-width: 2px;
+}
+
+/* iguala grosor del borde */
+
+/* Ribbon posicionado encima del título */
+.ribbon-above-title {
+  display: inline-block;
+  margin-bottom: 1rem;
+  /* separación con el h1 */
+}
+
+.ribbon-above-title span {
+  background: #e64a2e;
+  /* rojo inca */
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: .4rem .9rem;
+  border-radius: .25rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, .25);
+}
+
+/* ================== Tipografías ================== */
+@import url('https://fonts.googleapis.com/css2?family=Andada+Pro:ital,wght@0,400..840;1,400..840&family=Rye&display=swap');
+
+/* ================== Paleta inka ================== */
+:root {
+  --inca-brown: #4b2f1a;
+  --inca-brown-900: #352112;
+  --inca-gold: #c9a227;
+  --inca-gold-700: #b8921f;
+  --inca-green: #2f5d50;
+  --inca-sand: #f2e8d5;
+  --ink: #1f1f1f;
+  --white: #fff;
+}
+
+/* ================== Base ================== */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Andada Pro", serif;
+  color: var(--ink);
+  background: var(--white);
+}
+
+h1,
+h2,
+h3,
+.navbar-brand,
+.display-title {
+  font-family: "Rye", serif;
+  letter-spacing: .4px;
+}
+
+a {
+  text-decoration: none;
+}
+
+/* ================== Navbar ================== */
+.navbar {
+  transition: background .25s ease, box-shadow .25s ease, padding .25s ease;
+  padding-block: .35rem;
+}
+
+.navbar .navbar-brand,
+.navbar .nav-link {
+  color: var(--white) !important;
+}
+
+.navbar .nav-link:hover,
+.navbar .nav-link.active,
+.navbar .nav-current {
+  color: var(--inca-gold) !important;
+}
+
+.navbar.nav-transparent {
+  background: transparent !important;
+}
+
+.navbar.nav-solid {
+  background: var(--inca-brown) !important;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, .25);
+}
+
+/* ================== Hero ================== */
+.hero {
+  position: relative;
+  max-height: 20vh;
+  isolation: isolate;
+  /* overlay correcto */
+  display: grid;
+  place-items: center;
+}
+
+.hero-media {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  will-change: transform;
+}
+
+.hero-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.12);
+  animation: kenburns 24s ease-in-out infinite alternate;
+  filter: saturate(1.05) contrast(1.05);
+  transform-origin: 60% 40%;
+}
+
+@keyframes kenburns {
+  0% {
+    transform: scale(1.12) translateY(0px);
+  }
+
+  100% {
+    transform: scale(1.22) translateY(-20px);
+  }
+}
+
+/* Parallax suave */
+@media (prefers-reduced-motion: no-preference) {
+  .hero-media {
+    background-attachment: fixed;
+  }
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, .40), rgba(0, 0, 0, .45));
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  color: var(--white);
+  max-width: 980px;
+  text-align: left;
+  margin-top: 4rem;
+}
+
+.display-title {
+  font-size: clamp(2rem, 1.2rem + 3.2vw, 4rem);
+  line-height: 1.05;
+  text-shadow: 0 6px 30px rgba(0, 0, 0, .45);
+}
+
+.hero-lead {
+  max-width: 720px;
+  opacity: .98;
+}
+
+/* Ribbon estilo "SIGNATURE ADVENTURE" */
+.ribbon {
+  position: absolute;
+  left: 1.25rem;
+  top: 5rem;
+  z-index: 3;
+  background: transparent;
+}
+
+.ribbon span {
+  background: #e64a2e;
+  /* tono rojo anaranjado del ref */
+  color: #fff;
+  font-weight: 800;
+  letter-spacing: .06em;
+  padding: .45rem .85rem;
+  border-radius: .25rem;
+  font-size: .85rem;
+  text-transform: uppercase;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, .25);
+}
+
+/* Botones CTA */
+.btn-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: .25rem;
+  background: transparent;
+  color: #fff;
+  border: 2px solid #fff;
+  padding: .8rem 1.35rem;
+  border-radius: .25rem;
+  font-weight: 800;
+  letter-spacing: .06em;
+}
+
+.btn-cta:hover {
+  background: rgba(255, 255, 255, .12);
+  color: #fff;
+}
+
+.btn-inca {
+  background: var(--inca-gold);
+  color: #1a1209;
+  font-weight: 800;
+}
+
+.btn-inca:hover {
+  background: var(--inca-gold-700);
+  color: #1a1209;
+}
+
+/* Flecha scroll */
+.scroll-down {
+  position: absolute;
+  bottom: 2.2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #fff;
+  font-size: 1.4rem;
+  opacity: .85;
+  z-index: 2;
+  width: 42px;
+  height: 42px;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  transition: transform .2s ease, opacity .2s ease;
+}
+
+.scroll-down:hover {
+  transform: translateX(-50%) translateY(-4px);
+  opacity: 1;
+}
+
+/* ================== Secciones editoriales ================== */
+.section-plain {
+  background: var(--inca-sand);
+  padding: 4.5rem 0;
+}
+
+.section-alt {
+  background: var(--white);
+  padding: 4.5rem 0;
+}
+
+.kicker {
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  color: var(--inca-gold);
+  font-weight: 800;
+}
+
+.section-title {
+  font-size: clamp(1.6rem, 1rem + 2.4vw, 2.4rem);
+  margin: .25rem 0 1rem 0;
+}
+
+.lead-ink {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  opacity: .95;
+}
+
+.media-cover {
+  width: 100%;
+  height: 420px;
+  object-fit: cover;
+  border-radius: .75rem;
+}
+
+/* ================== Banda CTA ================== */
+.band-cta {
+  background: var(--inca-green);
+  color: #fff;
+  padding: 2.6rem 0;
+}
+
+.band-cta .btn-inca {
+  background: var(--inca-gold);
+}
+
+/* ================== Footer ================== */
+.footer {
+  background: var(--inca-brown);
+  color: #fff;
+  padding: 1rem 0;
+  font-size: .95rem;
+}
+
+.footer a {
+  color: var(--inca-gold);
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}
+
+/* ================== Sombras útiles ================== */
+.shadow-soft {
+  box-shadow: 0 16px 40px rgba(0, 0, 0, .12);
+}
+
+/* ================== Scroll Reveal ================== */
+/* style.css */
+.reveal {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity .4s ease, transform .4s ease;
+}
+
+.reveal.revealed {
+  opacity: 1;
+  transform: none;
+}
+
+
+/* ================== Focus visible ================== */
+:focus-visible {
+  outline: 3px solid rgba(201, 162, 39, .45);
+  outline-offset: 4px;
+}
+
+/* ====== Ajustes de layout global ====== */
+.container {
+  max-width: 1180px;
+}
+
+/* Navbar: mejor espaciado y alineación de íconos */
+.navbar {
+  padding-block: .6rem;
+}
+
+.navbar .nav-link i {
+  opacity: .9;
+  margin-right: .35rem;
+}
+
+/* ====== HERO: títulos a la izquierda, mejor lectura y centrado visual ====== */
+.hero {
+  min-height: 70vh;
+}
+
+.hero-overlay {
+  background: linear-gradient(180deg, rgba(0, 0, 0, .48), rgba(0, 0, 0, .38));
+}
+
+.ribbon {
+  left: clamp(.75rem, 3vw, 2rem);
+  top: clamp(4rem, 7vh, 6rem);
+}
+
+.hero-content {
+  /* alinea a la izquierda y saca el texto de la zona de la modelo */
+  text-align: left;
+  max-width: 980px;
+  margin-top: 8vh;
+  padding-left: clamp(.5rem, 4vw, 2rem);
+}
+
+.display-title {
+  font-size: clamp(2.6rem, 1.8rem + 3.2vw, 4.4rem);
+  margin-bottom: .75rem;
+}
+
+.hero-lead {
+  font-size: clamp(1.05rem, .9rem + .4vw, 1.25rem);
+}
+
+.btn-cta {
+  padding: .9rem 1.4rem;
+  border-width: 2px;
+}
+
+.scroll-down {
+  bottom: 1.4rem;
+}
+
+/* Evita que la cara del niño tape el texto en 1200px+ */
+@media (min-width: 1200px) {
+  .hero-content {
+    padding-left: 2.5rem;
+    max-width: 860px;
+  }
+}
+
+/* Mejora de bloques editoriales: respiración y alineación */
+.section-plain,
+.section-alt {
+  padding: 5rem 0;
+}
+
+.media-cover {
+  height: 440px;
+}
+
+/* ====== FOOTER PRO ====== */
+.footer {
+  background: linear-gradient(180deg, var(--inca-brown), var(--inca-brown-900));
+  color: #fff;
+  padding: 3.2rem 0 0;
+  font-size: .98rem;
+}
+
+.footer a {
+  color: var(--inca-sand);
+  opacity: .9;
+}
+
+.footer a:hover {
+  color: var(--inca-gold);
+  opacity: 1;
+  text-decoration: none;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1fr 1.2fr;
+  gap: 2rem;
+}
+
+.footer h5 {
+  font-family: "Rye", serif;
+  font-size: 1.05rem;
+  letter-spacing: .02em;
+  margin-bottom: .9rem;
+  color: var(--inca-gold);
+}
+
+.footer .list-unstyled li+li {
+  margin-top: .4rem;
+}
+
+.footer .social a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, .08);
+  margin-right: .4rem;
+}
+
+.footer .social a:hover {
+  background: rgba(255, 255, 255, .16);
+}
+
+.footer .newsletter .form-control {
+  background: rgba(255, 255, 255, .09);
+  border: 1px solid rgba(255, 255, 255, .15);
+  color: #fff;
+}
+
+.footer .newsletter .form-control::placeholder {
+  color: rgba(255, 255, 255, .7);
+}
+
+.footer .newsletter .btn {
+  background: var(--inca-gold);
+  border: none;
+  font-weight: 700;
+}
+
+.footer .newsletter .btn:hover {
+  background: var(--inca-gold-700);
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, .12);
+  margin-top: 2.2rem;
+  padding: .9rem 0;
+  font-size: .92rem;
+  color: rgba(255, 255, 255, .85);
+}
+
+/* === Ribbon dentro del texto === */
+.ribbon-inline {
+  display: inline-block;
+}
+
+.ribbon-inline .ribbon-text {
+  background: #e64a2e;
+  /* rojo/naranja */
+  color: #fff;
+  font-weight: 800;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: .05em;
+  padding: .45rem .9rem;
+  border-radius: .25rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, .25);
+}
+
+/* === Alineación de los botones === */
+.btn-group-hero {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+  /* fuerza que queden en la misma línea base */
+  margin-top: 1.5rem;
+}
+
+.btn-group-hero .btn {
+  padding-top: .85rem;
+  padding-bottom: .85rem;
+  display: inline-flex;
+  align-items: center;
+  /* centra iconos y texto verticalmente */
+}
+
+
+
+@media (max-width: 991.98px) {
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* === HERO: tipografía y ancho del bloque === */
+.hero .display-title {
+  line-height: 1.06;
+  margin-bottom: .6rem;
+  /* tamaño fluido más compacto */
+  font-size: clamp(2.2rem, 1rem + 2.6vw, 3.4rem);
+}
+
+.hero .hero-lead {
+  max-width: 720px;
+}
+
+/* Alinea el texto y el ribbon a la misma guía izquierda */
+.hero .hero-content {
+  padding-left: clamp(.5rem, 3.5vw, 2rem);
+}
+
+/* === Botones del hero: misma altura y centrados === */
+.btn-group-hero {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+}
+
+.btn-group-hero .btn {
+  height: 54px;
+  /* misma altura */
+  display: inline-flex;
+  align-items: center;
+  padding: .8rem 1.35rem;
+}
+
+.btn-cta {
+  border-width: 2px;
+}
+
+/* ya la tienes, refuerzo */
+.btn-outline-light {
+  border-width: 2px;
+}
+
+/* iguala grosor del borde */
+
+/* Ribbon posicionado encima del título */
+.ribbon-above-title {
+  display: inline-block;
+  margin-bottom: 1rem;
+  /* separación con el h1 */
+}
+
+.ribbon-above-title span {
+  background: #e64a2e;
+  /* rojo inca */
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: .4rem .9rem;
+  border-radius: .25rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, .25);
+}
+
+.fondin {
+  background-color: var(--inca-sand);
+}
+
+.btin {
+  color: var(--inca-gold);
+}
+
+.btin:hover {
+  color: var(--inca-brown);
+
+}
+
+.btino {
+  background-color: var(--inca-gold);
+  border-color: var(--inca-gold);
+}
+
+.btino:hover {
+  background-color: var(--inca-brown);
+  border-color: var(--inca-brown);
+  color: var(--inca-gold);
+}
+
+.btn-inca:hover {
+  background-color: var(--inca-brown);
+  border-color: var(--inca-gold);
+  color: var(--inca-gold);
+}
+
+/* ======================
+   FILTROS / CHIPS
+   ====================== */
+.chip {
+  appearance: none;
+  background: var(--white);
+  border: 2px solid var(--inca-gold);
+  color: var(--inca-brown);
+  padding: 0.45rem 0.95rem;
+  border-radius: 999px;
+  font-size: .95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all .2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, .06);
+}
+
+.chip:hover {
+  background: var(--inca-gold-700);
+  border-color: var(--inca-gold-700);
+  color: var(--white);
+  transform: translateY(-2px);
+}
+
+.chip.is-active {
+  background: var(--inca-gold);
+  border-color: var(--inca-gold);
+  color: var(--inca-brown-900);
+  box-shadow: 0 6px 16px rgba(201, 162, 39, .25);
+}
+
+.login-section {
+  background-color: #f9f9f9;
+  /* Color de fondo suave */
+  font-family: 'Andada Pro', serif;
+}
+
+.left-visual {
+  background: linear-gradient(rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.55)), url('../images/Portada.png') center/cover no-repeat;
+  color: #fff;
+  position: relative;
+}
+
+.visual-overlay {
+  background: rgba(0, 0, 0, 0.4);
+  /* capa sutil para mejorar legibilidad */
+  height: 100%;
+  padding: 2rem;
+}
+
+.login-visual-title {
+  font-family: 'Rye', cursive;
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #f5d76e;
+  /* dorado inca */
+}
+
+.text-gold {
+  color: #f1c40f;
+}
+
+/* Ajuste de la imagen portada */
+.visual-img-wrapper {
+  max-width: 320px;
+  /* tamaño máximo controlado */
+  width: 100%;
+}
+
+.visual-img-wrapper img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  object-fit: cover;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+}
+
+/* Botón Inca */
+.btn-inca {
+  background-color: #f1c40f;
+  color: #000;
+  font-weight: 600;
+  border: none;
+  transition: background 0.3s;
+}
+
+.btn-inca:hover {
+  background-color: #d4ac0d;
+  color: #fff;
+}
+
+td.text-center span {
+  display: inline-block;
+  min-width: 50px;
+}
+
+td.text-center button {
+  vertical-align: middle;
+}

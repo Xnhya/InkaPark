@@ -23,7 +23,7 @@ public class TicketsControlador {
     private final UsuarioRepositorio usuarioRepo;
 
     public TicketsControlador(TicketsServicio ticketsServicio,
-                              UsuarioRepositorio usuarioRepo) {
+            UsuarioRepositorio usuarioRepo) {
         this.ticketsServicio = ticketsServicio;
         this.usuarioRepo = usuarioRepo;
     }
@@ -51,9 +51,9 @@ public class TicketsControlador {
      */
     @GetMapping
     public String pagina(@RequestParam(value = "f", required = false) String f,
-                         HttpSession session,
-                         Model model,
-                         Locale locale) {
+            HttpSession session,
+            Model model,
+            Locale locale) {
 
         LocalDate hoy = LocalDate.now();
 
@@ -80,14 +80,14 @@ public class TicketsControlador {
      */
     @PostMapping("/pagar")
     public String pagar(@RequestParam("fechaStr") String fechaStr,
-                        @RequestParam("cantidad") int cantidad,
-                        @RequestParam("numeroTarjeta") String numeroTarjeta,
-                        @RequestParam("cvv") String cvv,
-                        @RequestParam("vencimiento") String vencimiento,
-                        @RequestParam("telefono") String telefono,
-                        @RequestParam("direccion") String direccion,
-                        HttpSession session,
-                        RedirectAttributes ra) {
+            @RequestParam("cantidad") int cantidad,
+            @RequestParam("numeroTarjeta") String numeroTarjeta,
+            @RequestParam("cvv") String cvv,
+            @RequestParam("vencimiento") String vencimiento,
+            @RequestParam("telefono") String telefono,
+            @RequestParam("direccion") String direccion,
+            HttpSession session,
+            RedirectAttributes ra) {
 
         try {
             Usuario u = getUsuarioDeSesion(session);
@@ -119,4 +119,3 @@ public class TicketsControlador {
         }
     }
 }
-

@@ -1,4 +1,3 @@
-
 package com.example.Inkapark.controlador;
 
 import com.example.Inkapark.servicio.ContactoMensajeServicio;
@@ -18,7 +17,7 @@ public class PaginaControlador {
     @GetMapping("/atracciones")   public String atracciones(){ return "atracciones"; }
     @GetMapping("/galeria")       public String galeria()    { return "galeria"; }
     @GetMapping("/nosotros")      public String nosotros()   { return "nosotros"; }
-    
+
     @GetMapping("/contacto") public String contacto() { return "contacto"; }
 
     @PostMapping("/contacto")

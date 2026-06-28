@@ -1,0 +1,67 @@
+﻿name: CI 01 - Build & Test
+
+on:
+  push:
+    branches: [ develop, main ]
+  pull_request:
+    branches: [ develop, main ]
+
+jobs:
+  build:
+    name: Compilar y probar
+    runs-on: ubuntu-latest
+
+    services:
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: inkapark
+          MYSQL_USER: inkapark
+          MYSQL_PASSWORD: 12345
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="mysqladmin ping"
+          --health-interval=10s
+          --health-timeout=5s
+          --health-retries=5
+
+    steps:
+      - name: Clonar repositorio
+        uses: actions/checkout@v4
+
+      - name: Instalar JDK 21
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+          cache: maven
+
+      - name: Compilar proyecto
+        run: mvn compile -q
+
+      - name: Ejecutar pruebas unitarias
+        run: mvn test
+        env:
+          SPRING_DATASOURCE_URL: jdbc:mysql://localhost:3306/inkapark?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+          SPRING_DATASOURCE_USERNAME: inkapark
+          SPRING_DATASOURCE_PASSWORD: 12345
+
+      - name: Empaquetar JAR
+        run: mvn package -DskipTests -q
+
+      - name: Subir JAR como artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: inkapark-jar
+          path: target/*.jar
+          retention-days: 15
+
+      - name: Subir reporte de pruebas
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-reports
+          path: target/surefire-reports/
+          retention-days: 7

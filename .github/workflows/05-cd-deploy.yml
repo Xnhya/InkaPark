@@ -1,0 +1,76 @@
+﻿name: CD 05 - Deploy Continuo
+
+on:
+  push:
+    branches: [ main ]
+    tags: [ 'v*' ]
+
+jobs:
+  deploy-pages:
+    name: Desplegar a GitHub Pages
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+
+    permissions:
+      contents: write
+      pages: write
+      id-token: write
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    steps:
+      - name: Clonar repositorio
+        uses: actions/checkout@v4
+
+      - name: Copiar assets estaticos
+        run: |
+          mkdir -p static-site/css static-site/js static-site/images
+          cp -r src/main/resources/static/css/* static-site/css/ 2>/dev/null || true
+          cp -r src/main/resources/static/js/* static-site/js/ 2>/dev/null || true
+          cp -r src/main/resources/static/images/* static-site/images/ 2>/dev/null || true
+
+      - name: Subir artifact para Pages
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: static-site/
+
+      - name: Desplegar a GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
+
+  release:
+    name: Crear Release
+    runs-on: ubuntu-latest
+    if: startsWith(github.ref, 'refs/tags/v')
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Clonar repositorio
+        uses: actions/checkout@v4
+
+      - name: Instalar JDK 21
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+          cache: maven
+
+      - name: Empaquetar JAR
+        run: mvn package -DskipTests -q
+
+      - name: Crear Release
+        uses: softprops/action-gh-release@v2
+        with:
+          name: InkaPark ${{ github.ref_name }}
+          body: |
+            ## InkaPark ${{ github.ref_name }}
+            ### Cambios incluidos
+            - Ver el changelog para detalles completos.
+            ### Archivos
+            - JAR ejecutable adjunto.
+          files: target/*.jar
+          generate_release_notes: true

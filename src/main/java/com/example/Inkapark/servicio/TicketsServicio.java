@@ -31,7 +31,7 @@ public class TicketsServicio {
     private int aforoDefault;
 
     @Value("${incapark.tickets.precio:50.00}")
-    private BigDecimal precioTicket;
+    private BigDecimal precioTicket; 
 
     public TicketsServicio(ManejoAforoRepositorio aforoRepo,
                            BoletaRepositorio boletaRepo,
@@ -171,4 +171,3 @@ public class TicketsServicio {
         return s.substring(0, 1).toUpperCase() + s.substring(1);
     }
 }
-

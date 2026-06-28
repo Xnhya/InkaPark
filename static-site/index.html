@@ -1,0 +1,63 @@
+@'
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InkaPark - Parque Tematico Cultural</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, sans-serif; margin: 0; padding: 0;
+               background: linear-gradient(135deg, #2d1b0e 0%, #5c3a21 100%); color: #f4e4c1; }
+        .container { max-width: 900px; margin: 0 auto; padding: 60px 20px; text-align: center; }
+        h1 { font-size: 3em; color: #d4a847; margin-bottom: 10px; }
+        h2 { font-size: 1.3em; font-weight: 400; color: #c9a87c; margin-bottom: 40px; }
+        .features { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                     gap: 25px; margin: 40px 0; }
+        .card { background: rgba(255,255,255,0.08); padding: 25px; border-radius: 12px;
+                border: 1px solid rgba(212,168,71,0.3); }
+        .card h3 { color: #d4a847; }
+        .badge { display: inline-block; background: #d4a847; color: #2d1b0e; padding: 8px 20px;
+                 border-radius: 20px; font-weight: bold; margin: 5px; }
+        .footer { margin-top: 60px; font-size: 0.85em; opacity: 0.6; }
+        .tech-stack { margin: 30px 0; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🏛️ InkaPark</h1>
+        <h2>Gestion inteligente de parques tematicos de la cultura Inca</h2>
+
+        <div class="tech-stack">
+            <span class="badge">Java 21</span>
+            <span class="badge">Spring Boot 3.5</span>
+            <span class="badge">MySQL 8</span>
+            <span class="badge">Thymeleaf</span>
+            <span class="badge">OpenPDF</span>
+            <span class="badge">GitHub Actions</span>
+        </div>
+
+        <div class="features">
+            <div class="card"><h3>🎫 Gestion de Boletos</h3>
+                <p>Compra online con tarjeta, Yape o Plin. PDF y email.</p></div>
+            <div class="card"><h3>👥 Autenticacion</h3>
+                <p>Registro, login, verificacion por email y roles.</p></div>
+            <div class="card"><h3>📊 Panel Admin</h3>
+                <p>CRUD de usuarios, validacion de tickets, dashboard.</p></div>
+            <div class="card"><h3>🔄 CI/CD</h3>
+                <p>Build, test, lint, seguridad y deploy automatizados.</p></div>
+        </div>
+
+        <p style="margin-top:40px;">
+            <a href="https://github.com/Xnhya/InkaPark" style="color:#d4a847;">
+                Ver repositorio en GitHub →
+            </a>
+        </p>
+
+        <div class="footer">
+            <p>InkaPark — Proyecto de gestion de versiones con CI/CD</p>
+            <p>Desarrollado con Spring Boot · Desplegado con GitHub Actions</p>
+        </div>
+    </div>
+</body>
+</html>
+'@ | Set-Content "$destino\static-site\index.html" -Encoding UTF8
