@@ -16,10 +16,6 @@ jobs:
       pages: write
       id-token: write
 
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-
     steps:
       - name: Clonar repositorio
         uses: actions/checkout@v4
@@ -31,14 +27,23 @@ jobs:
           cp -r src/main/resources/static/js/* static-site/js/ 2>/dev/null || true
           cp -r src/main/resources/static/images/* static-site/images/ 2>/dev/null || true
 
-      - name: Subir artifact para Pages
-        uses: actions/upload-pages-artifact@v3
+      - name: Empaquetar artifact con nombre unico
+        run: |
+          tar -czf github-pages.tar.gz -C static-site .
+          echo "artifact_name=pages-${{ github.run_id }}" >> $GITHUB_ENV
+
+      - name: Cargar artifact
+        uses: actions/upload-artifact@v4
         with:
-          path: static-site/
+          name: ${{ env.artifact_name }}
+          path: github-pages.tar.gz
+          retention-days: 1
 
       - name: Desplegar a GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+        with:
+          artifact_name: ${{ env.artifact_name }}
 
   release:
     name: Crear Release
