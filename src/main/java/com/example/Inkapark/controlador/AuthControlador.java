@@ -18,8 +18,8 @@ public class AuthControlador {
     private final UsuarioRepositorio usuarioRepositorio;
 
     public AuthControlador(AuthServicio authServicio,
-                           RegistroServicio registroServicio,
-                           UsuarioRepositorio usuarioRepositorio) {
+            RegistroServicio registroServicio,
+            UsuarioRepositorio usuarioRepositorio) {
         this.authServicio = authServicio;
         this.registroServicio = registroServicio;
         this.usuarioRepositorio = usuarioRepositorio;
@@ -36,21 +36,23 @@ public class AuthControlador {
 
     @PostMapping("/login")
     public String procesarLogin(@RequestParam String email,
-                                @RequestParam String password,
-                                @RequestParam(value = "redirect", required = false) String redirect,
-                                HttpSession session,
-                                Model model) {
+            @RequestParam String password,
+            @RequestParam(value = "redirect", required = false) String redirect,
+            HttpSession session,
+            Model model) {
 
         String correoNorm = email == null ? null : email.trim().toLowerCase();
 
         // Mensaje claro si la cuenta existe pero NO está verificada
         usuarioRepositorio.findByCorreo(correoNorm).ifPresent(u -> {
             if (!u.isVerificado()) {
-                model.addAttribute("error", "Tu cuenta no está verificada. Revisa tu correo @gmail.com o solicita un nuevo enlace.");
+                model.addAttribute("error", "Tu cuenta no está verificada. Revisa tu correo @gmail.com"
+                        + " o solicita un nuevo enlace.");
             }
         });
         if (model.containsAttribute("error")) {
-            if (redirect != null && !redirect.isBlank()) model.addAttribute("redirect", redirect);
+            if (redirect != null && !redirect.isBlank())
+                model.addAttribute("redirect", redirect);
             return "login";
         }
 
@@ -71,7 +73,8 @@ public class AuthControlador {
                 })
                 .orElseGet(() -> {
                     model.addAttribute("error", "Correo o contraseña incorrectos.");
-                    if (redirect != null && !redirect.isBlank()) model.addAttribute("redirect", redirect);
+                    if (redirect != null && !redirect.isBlank())
+                        model.addAttribute("redirect", redirect);
                     return "login";
                 });
     }
@@ -84,9 +87,9 @@ public class AuthControlador {
 
     @PostMapping("/register")
     public String procesarRegistro(@RequestParam String name,
-                                   @RequestParam String email,
-                                   @RequestParam String password,
-                                   Model model) {
+            @RequestParam String email,
+            @RequestParam String password,
+            Model model) {
         try {
             // Envía correo con token y deja la cuenta pendiente de verificación
             registroServicio.registrarCliente(name, email, password);
@@ -102,8 +105,8 @@ public class AuthControlador {
     // Asegúrate de construir el link como /auth/verificar?email=...&token=...
     @GetMapping("/verificar")
     public String verificarCuenta(@RequestParam("email") String email,
-                                  @RequestParam("token") String token,
-                                  Model model) {
+            @RequestParam("token") String token,
+            Model model) {
         try {
             registroServicio.verificarCuenta(email, token);
             model.addAttribute("ok", "Tu cuenta se ha verificado correctamente. Ya puedes iniciar sesión.");
@@ -118,7 +121,8 @@ public class AuthControlador {
     public String reenviarVerificacion(@RequestParam("email") String email, Model model) {
         try {
             registroServicio.reenviarVerificacion(email);
-            model.addAttribute("ok", "Si existe una cuenta con ese correo y no está verificada, enviamos un nuevo enlace.");
+            model.addAttribute("ok",
+                    "Si existe una cuenta con ese correo y no está verificada, enviamos un nuevo enlace.");
         } catch (Exception e) {
             model.addAttribute("error", e.getMessage());
         }

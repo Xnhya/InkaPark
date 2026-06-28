@@ -1,57 +1,55 @@
-﻿<?xml version="1.0"?>
-<!DOCTYPE module PUBLIC
-    "-//Checkstyle//DTD Checkstyle Configuration 1.3//EN"
-    "https://checkstyle.org/dtds/configuration_1_3.dtd">
+<?xml version="1.0"?>
+<!DOCTYPE module PUBLIC "-//Checkstyle//DTD Checkstyle Configuration 1.3//EN" "https://checkstyle.org/dtds/configuration_1_3.dtd"[]>
 <module name="Checker">
-  <property name="charset" value="UTF-8"/>
-  <property name="severity" value="warning"/>
-  <property name="fileExtensions" value="java"/>
+  <property name="charset" value="UTF-8" />
+  <property name="severity" value="warning" />
+  <property name="fileExtensions" value="java" />
   <module name="LineLength">
-    <property name="max" value="130"/>
-    <property name="ignorePattern" value="^import"/>
+    <property name="max" value="130" />
+    <property name="ignorePattern" value="^import" />
   </module>
   <module name="TreeWalker">
     <module name="AvoidStarImport">
-      <property name="allowClassImports" value="true"/>
-      <property name="allowStaticMemberImports" value="true"/>
+      <property name="allowClassImports" value="true" />
+      <property name="allowStaticMemberImports" value="true" />
     </module>
-    <module name="IllegalImport"/>
-    <module name="UnusedImports"/>
-    <module name="ModifierOrder"/>
-    <module name="RedundantModifier"/>
+    <module name="IllegalImport" />
+    <module name="UnusedImports" />
+    <module name="ModifierOrder" />
+    <module name="RedundantModifier" />
     <module name="LeftCurly">
-      <property name="option" value="nlow"/>
+      <property name="option" value="eol" />
     </module>
     <module name="NeedBraces">
-      <property name="allowSingleLineStatement" value="true"/>
+      <property name="allowSingleLineStatement" value="true" />
     </module>
-    <module name="RightCurly"/>
-    <module name="ConstantName"/>
-    <module name="LocalFinalVariableName"/>
-    <module name="LocalVariableName"/>
-    <module name="MemberName"/>
+    <module name="RightCurly" />
+    <module name="ConstantName" />
+    <module name="LocalFinalVariableName" />
+    <module name="LocalVariableName" />
+    <module name="MemberName" />
     <module name="MethodName">
-      <property name="format" value="^[a-z][a-zA-Z0-9]*(_[a-zA-Z0-9]+)*$"/>
+      <property name="format" value="^[a-z][a-zA-Z0-9]*(_[a-zA-Z0-9]+)*$" />
     </module>
-    <module name="PackageName"/>
-    <module name="ParameterName"/>
-    <module name="StaticVariableName"/>
-    <module name="TypeName"/>
-    <module name="GenericWhitespace"/>
-    <module name="EmptyForIteratorPad"/>
-    <module name="MethodParamPad"/>
+    <module name="PackageName" />
+    <module name="ParameterName" />
+    <module name="StaticVariableName" />
+    <module name="TypeName" />
+    <module name="GenericWhitespace" />
+    <module name="EmptyForIteratorPad" />
+    <module name="MethodParamPad" />
     <module name="NoWhitespaceAfter">
-      <property name="tokens" value="AT, INC, DEC, UNARY_MINUS, UNARY_PLUS, BNOT, LNOT, DOT, ARRAY_DECLARATOR, INDEX_OP, METHOD_REF"/>
+      <property name="tokens" value="AT, INC, DEC, UNARY_MINUS, UNARY_PLUS, BNOT, LNOT, DOT, ARRAY_DECLARATOR, INDEX_OP, METHOD_REF" />
     </module>
-    <module name="NoWhitespaceBefore"/>
+    <module name="NoWhitespaceBefore" />
     <module name="OperatorWrap">
-      <property name="option" value="eol"/>
+      <property name="option" value="nl" />
     </module>
-    <module name="ParenPad"/>
-    <module name="TypecastParenPad"/>
-    <module name="WhitespaceAfter"/>
-    <module name="WhitespaceAround"/>
-    <module name="ArrayTypeStyle"/>
-    <module name="UpperEll"/>
+    <module name="ParenPad" />
+    <module name="TypecastParenPad" />
+    <module name="WhitespaceAfter" />
+    <module name="WhitespaceAround" />
+    <module name="ArrayTypeStyle" />
+    <module name="UpperEll" />
   </module>
 </module>

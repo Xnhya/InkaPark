@@ -26,8 +26,9 @@ public class BoletaServicio {
     @Transactional
     public Boleta crearBoleta(Integer idUsuario, LocalDate fechaEvento, int cantidad, BigDecimal precioTotal) {
         if (cantidad <= 0) throw new IllegalArgumentException("Cantidad inválida");
-        if (precioTotal == null || precioTotal.signum() < 0)
+                if (precioTotal == null || precioTotal.signum() < 0) {
             throw new IllegalArgumentException("Precio inválido");
+        }
 
         var usuario = usuarios.findById(idUsuario)
                 .orElseThrow(() -> new IllegalArgumentException("Usuario no existe"));
@@ -35,8 +36,9 @@ public class BoletaServicio {
         var aforo = aforos.lockByFecha(fechaEvento)
                 .orElseThrow(() -> new IllegalArgumentException("No existe aforo para esa fecha"));
 
-        if (aforo.getAforoDisponible() < cantidad)
+                if (aforo.getAforoDisponible() < cantidad) {
             throw new IllegalStateException("No hay aforo suficiente");
+        }
 
         // Descontar aforo
         aforo.setAforoDisponible(aforo.getAforoDisponible() - cantidad);

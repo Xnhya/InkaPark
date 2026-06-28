@@ -43,7 +43,7 @@ public class AdminMensajeControlador {
         boolean ok = servicio.marcarAtendidoYNotificar(id, respuesta);
         if (ok) {
             ra.addAttribute("ok", "Marcado como atendido y correo enviado."); 
-        }else {
+        } else {
             ra.addAttribute("error", "No encontrado");
         }
         if (estado != null && !estado.isBlank()) {
@@ -62,7 +62,7 @@ public class AdminMensajeControlador {
         boolean ok = servicio.eliminar(id);
         if (ok) {
             ra.addAttribute("ok", "Mensaje eliminado"); 
-        }else {
+        } else {
             ra.addAttribute("error", "No encontrado");
         }
         if (estado != null && !estado.isBlank()) {
@@ -79,7 +79,7 @@ public class AdminMensajeControlador {
         boolean ok = servicio.responderYNotificar(id, respuesta);
         if (ok) {
             ra.addAttribute("ok", "Respuesta enviada al usuario."); 
-        }else {
+        } else {
             ra.addAttribute("error", "No se pudo enviar la respuesta.");
         }
         if (estado != null && !estado.isBlank()) {

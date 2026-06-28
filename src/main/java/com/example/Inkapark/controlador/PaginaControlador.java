@@ -14,7 +14,7 @@ public class PaginaControlador {
     }
 
     @GetMapping({"/", "/inicio"}) public String home()      { return "index"; }
-    @GetMapping("/atracciones")   public String atracciones(){ return "atracciones"; }
+    @GetMapping("/atracciones")   public String atracciones() { return "atracciones"; }
     @GetMapping("/galeria")       public String galeria()    { return "galeria"; }
     @GetMapping("/nosotros")      public String nosotros()   { return "nosotros"; }
 

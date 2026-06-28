@@ -97,5 +97,5 @@ public class AdminTicketControlador {
         }
     }
 
-    public record DiaView(String nombre, LocalDate fecha) {}
+    public record DiaView(String nombre, LocalDate fecha) { }
 }
