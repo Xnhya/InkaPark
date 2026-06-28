@@ -1,33 +1,23 @@
-﻿name: CI 02 - Code Quality
-
+name: CI - Code Quality
 on:
   push:
     branches: [ develop, main ]
   pull_request:
     branches: [ develop, main ]
-
 jobs:
   lint:
     name: Analisis de calidad
     runs-on: ubuntu-latest
-
     steps:
-      - name: Clonar repositorio
-        uses: actions/checkout@v4
-
-      - name: Instalar JDK 21
-        uses: actions/setup-java@v4
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
         with:
           java-version: '21'
           distribution: 'temurin'
           cache: maven
-
-      - name: Verificar estilo con Checkstyle
-        run: mvn checkstyle:check -q
-
-      - name: Subir reporte Checkstyle
+      - run: mvn checkstyle:check -q
+      - uses: actions/upload-artifact@v4
         if: always()
-        uses: actions/upload-artifact@v4
         with:
           name: checkstyle-report
           path: target/checkstyle*
