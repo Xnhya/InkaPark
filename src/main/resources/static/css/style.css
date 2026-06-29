@@ -631,7 +631,6 @@ a {
 /* ================== Hero ================== */
 .hero {
   position: relative;
-  max-height: 20vh;
   isolation: isolate;
   /* overlay correcto */
   display: grid;
@@ -879,9 +878,6 @@ a {
 }
 
 /* ====== HERO: títulos a la izquierda, mejor lectura y centrado visual ====== */
-.hero {
-  min-height: 70vh;
-}
 
 .hero-overlay {
   background: linear-gradient(180deg, rgba(0, 0, 0, .48), rgba(0, 0, 0, .38));
