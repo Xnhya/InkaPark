@@ -15,7 +15,7 @@ public interface BoletaRepositorio extends JpaRepository<Boleta, String> {
            select coalesce(sum(b.cantidad), 0)
            from Boleta b
            where b.aforo.fechaEvento = :fecha
-             and b.estado <> com.example.Inkapark.modelo.Boleta$Estado.CANCELADA
+             and b.estado <> com.example.Inkapark.modelo.Boleta.Estado.CANCELADA
            """)
     Long vendidosDelDia(LocalDate fecha);
 

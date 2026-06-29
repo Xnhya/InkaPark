@@ -60,5 +60,5 @@ public class AdminControlador {
 
 
     @GetMapping("/noticias")
-    public String noticias() { return "adminnoticia"; }
+    public String noticias() { return "admin-noticia"; }
 }
