@@ -108,7 +108,9 @@ public class TicketsServicio {
         }
 
         String numClean = numeroTarjeta == null ? "" : numeroTarjeta.replaceAll("\\s+", "");
-        if (numClean.length() != 16) {
+        Pago.TipoTarjeta tipo = detectarTipoTarjeta(numClean);
+        int esperado = (tipo == Pago.TipoTarjeta.AMEX) ? 15 : 16;
+        if (numClean.length() != esperado) {
             throw new IllegalArgumentException("Número de tarjeta inválido");
         }
         if (cvv == null || cvv.length() != 3) {
