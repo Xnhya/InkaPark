@@ -28,5 +28,5 @@ jobs:
           context: .
           push: true
           tags: |
-            ghcr.io/${{ github.repository_owner }}/inkapark:latest
-            ghcr.io/${{ github.repository_owner }}/inkapark:${{ github.sha }}
+            ghcr.io/xnhya/inkapark:latest
+            ghcr.io/xnhya/inkapark:${{ github.sha }}
