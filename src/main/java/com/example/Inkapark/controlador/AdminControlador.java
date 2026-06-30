@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.example.Inkapark.servicio.AuthServicio;
 
 import jakarta.servlet.http.HttpSession;
-
+//soy controlador
 @Controller
 @RequestMapping("/admin")
 public class AdminControlador {
